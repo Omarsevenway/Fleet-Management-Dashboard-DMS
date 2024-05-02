@@ -1,20 +1,31 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
+import { PredictionDisplayComponent } from './prediction-display/prediction-display.component';
+import { MqttModule, IMqttServiceOptions } from 'ngx-mqtt';
+// Define your MQTT service options
+export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
+  hostname: 'test.mosquitto.org',
+  port: 1883,
+  protocol: 'ws',  // Ensure this protocol is supported by your MQTT broker
+  path: '/mqtt'
+};
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavigationBarComponent,
+    PredictionDisplayComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+
   ],
-  providers: [
-    provideClientHydration()
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
